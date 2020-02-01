@@ -31,7 +31,7 @@ def down(url,src):
 # down('http://img.soogif.com/c8Qlxig7tPc6IDWcDcgiffiwHPp8BIxV.mp4',GetDesktopPath()+'/an.mp4')
 
 def clearShell():
-    os.system('clear')
+    os.system('cls')
 
 
 
@@ -84,6 +84,7 @@ def getUrlText(text):
 def GetFileList(dir, fileList):
     newDir = dir
     if os.path.isfile(dir):
+        print('filelistMaker:'+dir)
         fileList.append(dir)
     elif os.path.isdir(dir):
         for s in os.listdir(dir):
@@ -114,12 +115,12 @@ class VideoMode():
         list = self.unCodeVideo()
         deletelist = self.resizeImage(list)
         self.makeVideo(list)
-        # print(delete_list)
+        print(list)
         self.deleteMaker(deletelist)
+        print("delete1")
         for x in deletelist:
-            print(x)
-
-        self.CEF(self.motherPath)
+            print('有意思',x)
+        # self.CEF(self.motherPath)
         print('结束')
 
     def CEF(self,path):
@@ -165,7 +166,8 @@ class VideoMode():
             clearShell()
             print('（0/3）下载进度   :   100%')
             print('（1/3）视频拆分   :   '+str(x+1)+'/'+str(len(List)))
-            self.getVideo(List[x].split('/')[len(List[x].split('/'))-1])
+            print('pathuncode'+List[x])
+            self.getVideo(List[x].split('\\')[len(List[x].split('\\'))-1])
             list1.append(List[x].split('.')[0]+'/')
         print("视频切片完成")
         self.deleteMaker(List)
@@ -196,7 +198,8 @@ class VideoMode():
         videoCapture = cv2.VideoCapture(self.motherPath+'/'+filename)
         step = 0
         i=0
-        key, frame = videoCapture.read()
+        print(videoCapture.read())
+        key,frame = videoCapture.read()
         if key:
             mkdir(path)
         else:
@@ -211,6 +214,7 @@ class VideoMode():
 
 
     def makeVideo(self,srcList):
+        print('222')
         fps = 24  # 视频每秒24帧
         size = (self.width, self.height)  # 需要转为视频的图片的尺寸
         video = cv2.VideoWriter(self.motherPath+"/Output_video.avi", cv2.VideoWriter_fourcc('I', '4', '2', '0'),fps,size)
