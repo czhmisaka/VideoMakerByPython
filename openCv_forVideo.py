@@ -8,7 +8,8 @@ import cv2
 from PIL import Image
 
 def GetDesktopPath():
-    return os.path.join(os.path.expanduser("~"), 'Desktop')
+    # return os.path.join(os.path.expanduser("~"), 'Desktop')
+    return 
 
 def downInDesktop(fileFolderName,urlList):
     src = GetDesktopPath()+'/'+fileFolderName
@@ -93,10 +94,6 @@ def GetFileList(dir, fileList):
             newDir = os.path.join(dir, s)
             GetFileList(newDir, fileList)
     return fileList
-
-# List1 = []
-# LIst = GetFileList(GetDesktopPath()+'/'+'video/',List1)
-# PrintList(List)
 
 class VideoMode():
     def __init__(self,motherPath):
